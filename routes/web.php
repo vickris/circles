@@ -22,5 +22,5 @@ Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('/circles/{circle}', 'CirclesController@show');
 Route::post('/circles', 'CirclesController@store');
-Route::get('/circles/{circle}/join', 'CirclesController@join');
+Route::post('/circles/{circle}/join', 'CirclesController@join');
 

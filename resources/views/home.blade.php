@@ -8,8 +8,10 @@
                 <div class="card-body">
                     @if (empty(Auth::user()->circles->first()))
                         <p>You are not part of any circles.</p>
-                        <search-circle><search-circle>
+                        <create-circle><create-circle>
+                        <!-- <search-circle><search-circle> -->
                     @else
+                        <search-circle :user_id="{{ Auth::user()->id }}"><search-circle>
                         <p>See your circles</p>
                     @endif
                 </div>

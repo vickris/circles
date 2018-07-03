@@ -12,10 +12,9 @@ class CirclesController extends Controller
     {
         // return view('circles.show', compact('circle'));
         return response()->json([
-            'data' => [
-                'title'  => $circle->title,
-                'members' => $circle->members,
-            ]
+            'title'  => $circle->title,
+            'members' => $circle->members,
+            'member_ids' => $circle->members->pluck('id')
         ], 200);
     }
 
@@ -25,6 +24,8 @@ class CirclesController extends Controller
             'title' => $request->title,
             'user_id' => $request->user()->id
         ]);
+
+        $circle->members()->syncWithoutDetaching($request->user()->id);
 
         return response()->json([
             'circle' => new CirclesResource($circle)

@@ -17,7 +17,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="#" @submit.prevent="createCircle">
+            <form action="#">
                 <div class="form-group">
                     <label for="title">Circle title</label>
                     <input type="text" class="form-control" v-model="title" @keyup.enter="createCircle">
@@ -44,16 +44,15 @@
                 axios.post('/circles', {
                     title: this.title,
                 }).then((response) => {
-                    console.log(response);
-                    // this.$router.push({ name: 'circles.show', params: {title:`${response.data.data.circle }`}})
-                    // this.$router.push({name: 'circles.index'})
-                    // window.location.href = `circles/${response.data.data.circle}`
+                    window.location.href = `circles/${response.data.circle.title}`
+                    $('#createCircleModal').modal({ show: false, backdrop: true })
+                    this.title = ''
                 }).catch((error) => {
-                    console.log(error)
+                    console.error(error)
                 })
             },
             launchModal () {
-                $('#createCircleModal').modal({ show: true, backdrop: false })
+                $('#createCircleModal').modal({ show: true, backdrop: true })
             }
         },
         mounted() {

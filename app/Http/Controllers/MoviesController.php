@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Movie;
 use Tmdb\Helper\ImageHelper;
@@ -12,14 +12,6 @@ use Tmdb\Model\Search\SearchQuery\MovieSearchQuery;
 
 class MoviesController extends Controller
 {
-    public function __construct(MovieRepository $movies, SearchRepository $search, ImageHelper $helper)
-    {
-        $this->movies = $movies;
-        $this->search = $search;
-        $this->helper = $helper;
-    }
-
-
     public function index()
     {
         $movies = Movie::all();
@@ -37,12 +29,12 @@ class MoviesController extends Controller
         return view('show', compact('movie'));
     }
 
-    public function loadDb()
+    public function loadDb(MovieRepository $movies)
     {
-        $movies = $this->movies->getPopular();
+        $movies_ = $movies->getPopular();
 
-        foreach ($movies as $movie) {
-            $movie = $this->movies->load($movie->getId());
+        foreach ($movies_ as $movie) {
+            $movie = $movies->load($movie->getId());
             Movie::create([
                 'movie_id' => $movie->getId(),
                 'backdrop' => $movie->getBackdropPath(),

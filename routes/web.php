@@ -24,3 +24,6 @@ Route::get('/circles/{circle}', 'CirclesController@show');
 Route::post('/circles', 'CirclesController@store');
 Route::post('/circles/{circle}/join', 'CirclesController@join');
 
+Route::get('/loadDb', 'MoviesController@loadDb');
+Route::get('/movies', 'MoviesController@index');
+

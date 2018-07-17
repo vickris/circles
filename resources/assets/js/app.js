@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('create-circle', require('./components/CreateCircle.vue'));
 Vue.component('search-circle', require('./components/SearchCircle.vue'));
+Vue.component('search-movie', require('./components/SearchMovie.vue'));
 
 
 const app = new Vue({

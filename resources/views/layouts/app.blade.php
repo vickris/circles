@@ -36,7 +36,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
+                    <search-movie></search-movie>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

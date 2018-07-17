@@ -19,3 +19,20 @@ export const userautocomplete = (selector, { hitsPerPage }) => {
         }
     })
 }
+
+export const movieautocomplete = (selector, { hitsPerPage }) => {
+    index = index.initIndex('movies')
+
+    return autocomplete(selector, {
+        hint: true
+    }, {
+        source: autocomplete.sources.hits(index, { hitsPerPage: hitsPerPage }),
+        displayKey: 'title',
+        templates: {
+            suggestion (suggestion) {
+                return '<span>' + suggestion._highlightResult.title.value + '</span>'
+            },
+            empty: '<div class="aa-empty">No movies found</div>'
+        }
+    })
+}

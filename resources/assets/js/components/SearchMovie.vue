@@ -1,7 +1,7 @@
 <template>
     <form class="navbar-form" role="search">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" id="movies">
+            <input type="text" class="form-control navbar-search" placeholder="Search" id="movies">
         </div>
         </form>
 </template>

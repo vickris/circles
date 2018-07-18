@@ -30,7 +30,7 @@ export const movieautocomplete = (selector, { hitsPerPage }) => {
         displayKey: 'title',
         templates: {
             suggestion (suggestion) {
-                return '<span>' + suggestion._highlightResult.title.value + '</span>'
+                return '<img src="' + suggestion.backdrop_url + '" height="42" width="42"> &nbsp; <span>' + suggestion._highlightResult.title.value + '</span>'
             },
             empty: '<div class="aa-empty">No movies found</div>'
         }

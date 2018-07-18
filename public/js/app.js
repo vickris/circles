@@ -81,7 +81,7 @@ module.exports = Array.isArray || function (arr) {
 "use strict";
 
 
-var bind = __webpack_require__(21);
+var bind = __webpack_require__(20);
 var isBuffer = __webpack_require__(44);
 
 /*global toString:true*/
@@ -1130,10 +1130,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(22);
+    adapter = __webpack_require__(21);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(22);
+    adapter = __webpack_require__(21);
   }
   return adapter;
 }
@@ -1534,19 +1534,6 @@ module.exports = css;
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var AlgoliaSearch = __webpack_require__(85);
-var createAlgoliasearch = __webpack_require__(96);
-
-module.exports = createAlgoliasearch(AlgoliaSearch);
-
-
-/***/ }),
-/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function deprecate(fn, message) {
@@ -1567,7 +1554,7 @@ module.exports = function deprecate(fn, message) {
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function deprecatedMessage(previousUsage, newUsage) {
@@ -1580,7 +1567,7 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4109,7 +4096,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -14480,7 +14467,7 @@ return jQuery;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14498,7 +14485,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14509,7 +14496,7 @@ var settle = __webpack_require__(47);
 var buildURL = __webpack_require__(49);
 var parseHeaders = __webpack_require__(50);
 var isURLSameOrigin = __webpack_require__(51);
-var createError = __webpack_require__(23);
+var createError = __webpack_require__(22);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(52);
 
 module.exports = function xhrAdapter(config) {
@@ -14685,7 +14672,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14710,7 +14697,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14722,7 +14709,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14748,17 +14735,63 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return userautocomplete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return movieautocomplete; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_autocomplete_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_algoliasearch__);
 
 
-module.exports = __webpack_require__(70);
 
+var index = __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default()('59KW3LGTG9', '09c2e061712bed66f427f0551e98a355');
+
+var userautocomplete = function userautocomplete(selector, _ref) {
+    var hitsPerPage = _ref.hitsPerPage;
+
+    index = index.initIndex('circles');
+
+    return __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {
+        hint: true
+    }, {
+        source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: hitsPerPage }),
+        displayKey: 'title',
+        templates: {
+            suggestion: function suggestion(_suggestion) {
+                return '<span>' + _suggestion._highlightResult.title.value + '</span>';
+            },
+
+            empty: '<div class="aa-empty">No circles found</div>'
+        }
+    });
+};
+
+var movieautocomplete = function movieautocomplete(selector, _ref2) {
+    var hitsPerPage = _ref2.hitsPerPage;
+
+    index = index.initIndex('movies');
+
+    return __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {
+        hint: true
+    }, {
+        source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: hitsPerPage }),
+        displayKey: 'title',
+        templates: {
+            suggestion: function suggestion(_suggestion2) {
+                return '<img src="' + _suggestion2.backdrop_url + '" height="42" width="42"> &nbsp; <span>' + _suggestion2._highlightResult.title.value + '</span>';
+            },
+
+            empty: '<div class="aa-empty">No movies found</div>'
+        }
+    });
+};
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14800,7 +14833,7 @@ module.exports = EventBus;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14816,14 +14849,14 @@ module.exports = {
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = "0.30.0";
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14836,12 +14869,25 @@ module.exports = function parseAlgoliaClientVersion(agent) {
 
 
 /***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var AlgoliaSearch = __webpack_require__(85);
+var createAlgoliasearch = __webpack_require__(96);
+
+module.exports = createAlgoliasearch(AlgoliaSearch);
+
+
+/***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildSearchMethod = __webpack_require__(32);
-var deprecate = __webpack_require__(17);
-var deprecatedMessage = __webpack_require__(18);
+var deprecate = __webpack_require__(16);
+var deprecatedMessage = __webpack_require__(17);
 
 module.exports = IndexCore;
 
@@ -15398,7 +15444,7 @@ var app = new Vue({
 
 
 window._ = __webpack_require__(39);
-window.Popper = __webpack_require__(19).default;
+window.Popper = __webpack_require__(18).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -15407,7 +15453,7 @@ window.Popper = __webpack_require__(19).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(20);
+  window.$ = window.jQuery = __webpack_require__(19);
 
   __webpack_require__(41);
 } catch (e) {}
@@ -32604,7 +32650,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(20), __webpack_require__(19)) :
+   true ? factory(exports, __webpack_require__(19), __webpack_require__(18)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -36541,7 +36587,7 @@ module.exports = __webpack_require__(43);
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(21);
+var bind = __webpack_require__(20);
 var Axios = __webpack_require__(45);
 var defaults = __webpack_require__(12);
 
@@ -36576,9 +36622,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(25);
+axios.Cancel = __webpack_require__(24);
 axios.CancelToken = __webpack_require__(59);
-axios.isCancel = __webpack_require__(24);
+axios.isCancel = __webpack_require__(23);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -36731,7 +36777,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(23);
+var createError = __webpack_require__(22);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -37164,7 +37210,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(56);
-var isCancel = __webpack_require__(24);
+var isCancel = __webpack_require__(23);
 var defaults = __webpack_require__(12);
 var isAbsoluteURL = __webpack_require__(57);
 var combineURLs = __webpack_require__(58);
@@ -37324,7 +37370,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(25);
+var Cancel = __webpack_require__(24);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -48952,7 +48998,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__(25);
 //
 //
 //
@@ -49029,59 +49075,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 69 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return userautocomplete; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return movieautocomplete; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_autocomplete_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_algoliasearch__);
 
 
+module.exports = __webpack_require__(70);
 
-var index = __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default()('59KW3LGTG9', '09c2e061712bed66f427f0551e98a355');
-
-var userautocomplete = function userautocomplete(selector, _ref) {
-    var hitsPerPage = _ref.hitsPerPage;
-
-    index = index.initIndex('circles');
-
-    return __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {
-        hint: true
-    }, {
-        source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: hitsPerPage }),
-        displayKey: 'title',
-        templates: {
-            suggestion: function suggestion(_suggestion) {
-                return '<span>' + _suggestion._highlightResult.title.value + '</span>';
-            },
-
-            empty: '<div class="aa-empty">No circles found</div>'
-        }
-    });
-};
-
-var movieautocomplete = function movieautocomplete(selector, _ref2) {
-    var hitsPerPage = _ref2.hitsPerPage;
-
-    index = index.initIndex('movies');
-
-    return __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {
-        hint: true
-    }, {
-        source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: hitsPerPage }),
-        displayKey: 'title',
-        templates: {
-            suggestion: function suggestion(_suggestion2) {
-                return '<span>' + _suggestion2._highlightResult.title.value + '</span>';
-            },
-
-            empty: '<div class="aa-empty">No movies found</div>'
-        }
-    });
-};
 
 /***/ }),
 /* 70 */
@@ -49116,7 +49116,7 @@ _.Event = zepto.Event;
 
 var typeaheadKey = 'aaAutocomplete';
 var Typeahead = __webpack_require__(72);
-var EventBus = __webpack_require__(27);
+var EventBus = __webpack_require__(26);
 
 function autocomplete(selector, options, datasets, typeaheadObject) {
   datasets = _.isArray(datasets) ? datasets : [].slice.call(arguments, 2);
@@ -50508,10 +50508,10 @@ var attrsKey = 'aaAttrs';
 
 var _ = __webpack_require__(3);
 var DOM = __webpack_require__(5);
-var EventBus = __webpack_require__(27);
+var EventBus = __webpack_require__(26);
 var Input = __webpack_require__(73);
 var Dropdown = __webpack_require__(80);
-var html = __webpack_require__(28);
+var html = __webpack_require__(27);
 var css = __webpack_require__(15);
 
 // constructor
@@ -52127,7 +52127,7 @@ var datumKey = 'aaDatum';
 
 var _ = __webpack_require__(3);
 var DOM = __webpack_require__(5);
-var html = __webpack_require__(28);
+var html = __webpack_require__(27);
 var css = __webpack_require__(15);
 var EventEmitter = __webpack_require__(14);
 
@@ -52438,8 +52438,8 @@ module.exports = {
 
 
 var _ = __webpack_require__(3);
-var version = __webpack_require__(29);
-var parseAlgoliaClientVersion = __webpack_require__(30);
+var version = __webpack_require__(28);
+var parseAlgoliaClientVersion = __webpack_require__(29);
 
 module.exports = function search(index, params) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -52469,8 +52469,8 @@ module.exports = function search(index, params) {
 
 
 var _ = __webpack_require__(3);
-var version = __webpack_require__(29);
-var parseAlgoliaClientVersion = __webpack_require__(30);
+var version = __webpack_require__(28);
+var parseAlgoliaClientVersion = __webpack_require__(29);
 
 module.exports = function popularIn(index, params, details, options) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -52560,8 +52560,8 @@ module.exports = function popularIn(index, params, details, options) {
 module.exports = AlgoliaSearch;
 
 var Index = __webpack_require__(86);
-var deprecate = __webpack_require__(17);
-var deprecatedMessage = __webpack_require__(18);
+var deprecate = __webpack_require__(16);
+var deprecatedMessage = __webpack_require__(17);
 var AlgoliaSearchCore = __webpack_require__(91);
 var inherits = __webpack_require__(10);
 var errors = __webpack_require__(6);
@@ -53234,8 +53234,8 @@ function notImplemented() {
 
 var inherits = __webpack_require__(10);
 var IndexCore = __webpack_require__(31);
-var deprecate = __webpack_require__(17);
-var deprecatedMessage = __webpack_require__(18);
+var deprecate = __webpack_require__(16);
+var deprecatedMessage = __webpack_require__(17);
 var exitPromise = __webpack_require__(35);
 var errors = __webpack_require__(6);
 
@@ -56442,7 +56442,7 @@ function plural(ms, n, name) {
 
 module.exports = createAnalyticsClient;
 
-var algoliasearch = __webpack_require__(16);
+var algoliasearch = __webpack_require__(30);
 
 function createAnalyticsClient(appId, apiKey, opts) {
   var analytics = {};
@@ -58456,7 +58456,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__(25);
 //
 //
 //
@@ -58497,7 +58497,7 @@ var staticRenderFns = [
       [
         _c("div", { staticClass: "input-group" }, [
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "form-control navbar-search",
             attrs: { type: "text", placeholder: "Search", id: "movies" }
           })
         ])

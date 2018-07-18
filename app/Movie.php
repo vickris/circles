@@ -23,7 +23,7 @@ class Movie extends Model
         'overall_rating',
         'runtime',
         'country',
-        'trailer'
+        'trailer',
     ];
 
     public function getRouteKeyName()
@@ -36,11 +36,6 @@ class Movie extends Model
         'cast' => 'array',
         'country' => 'array',
     ];
-
-    public function toSearchableArray()
-    {
-        return $this->toArray();
-    }
 
 
     protected static function getMovieDirector($movie)
@@ -124,5 +119,18 @@ class Movie extends Model
     public function circles()
     {
         return $this->belongsToMany('App\Circle');
+    }
+
+    public function backdropUrl($size = 300)
+    {
+        return 'https://image.tmdb.org/t/p/w' . $size . $this->backdrop;
+    }
+
+    public function toSearchableArray()
+    {
+        $properties = $this->toArray();
+        $properties['backdrop_url'] = $this->backdropUrl();
+
+        return $properties;
     }
 }
